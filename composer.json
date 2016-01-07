@@ -1,0 +1,15 @@
+{
+	"name": "oomphinc/composer-installer-extender",
+	"type": "composer-plugin",
+	"license": "MIT",
+	"autoload": {
+		"psr-4": {"Oomphinc\\ComposerInstallerExtender\\": ""}
+	},
+	"extra": {
+		"class": "Oomphinc\\ComposerInstallerExtender\\Plugin"
+	},
+	"require": {
+		"composer-plugin-api": "1.0.0",
+		"composer/installers": "1.0.12"
+	}
+}
