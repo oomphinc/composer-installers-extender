@@ -1,7 +1,19 @@
 {
 	"name": "oomphinc/composer-installer-extender",
+	"description": "Extend the composer/installers plugin to accept any arbitrary package type.",
+	"homepage": "http://www.oomphinc.com/",
 	"type": "composer-plugin",
 	"license": "MIT",
+	"authors": [
+		{
+			"name": "Stephen Beemsterboer",
+			"email": "stephen@oomphinc.com",
+			"homepage": "https://github.com/balbuf"
+		}
+	],
+	"support": {
+		"issues": "https://github.com/oomphinc/composer-installer-extender/issues"
+	},
 	"autoload": {
 		"psr-4": {"OomphInc\\ComposerInstallerExtender\\": "src/"}
 	},
