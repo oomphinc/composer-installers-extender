@@ -1,6 +1,6 @@
-# Composer Installer Extender
+# Composer Installers Extender
 
-The `composer-installer-extender` is a plugin for [Composer](https://getcomposer.org/) that allows
+The `composer-installers-extender` is a plugin for [Composer](https://getcomposer.org/) that allows
 any package to be installed to a directory other than the default `vendor/` directory within
 the repo on a package-by-package basis. This plugin extends the [`composer/installers`](https://github.com/composer/installers)
 plugin to allow any arbitrary package type to be handled by their custom installer and specified explicitly in the
@@ -12,9 +12,9 @@ allows additional package types to be handled by `composer/installers`, benefiti
 mapping and token replacement of package properties.
 
 ## How to Use
-Add `oomphinc/composer-installer-extender` as a dependency of your project.
+Add `oomphinc/composer-installers-extender` as a dependency of your project.
 ```sh
-composer require oomphinc/composer-installer-extender
+composer require oomphinc/composer-installers-extender
 ```
 `composer/installers` is a dependency of this plugin and will be automatically required as well.
 

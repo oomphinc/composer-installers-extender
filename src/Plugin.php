@@ -1,6 +1,6 @@
 <?php
 
-namespace OomphInc\ComposerInstallerExtender;
+namespace OomphInc\ComposerInstallersExtender;
 
 use Composer\Composer;
 use Composer\IO\IOInterface;

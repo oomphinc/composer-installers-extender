@@ -1,5 +1,5 @@
 {
-	"name": "oomphinc/composer-installer-extender",
+	"name": "oomphinc/composer-installers-extender",
 	"description": "Extend the composer/installers plugin to accept any arbitrary package type.",
 	"homepage": "http://www.oomphinc.com/",
 	"type": "composer-plugin",
@@ -12,13 +12,13 @@
 		}
 	],
 	"support": {
-		"issues": "https://github.com/oomphinc/composer-installer-extender/issues"
+		"issues": "https://github.com/oomphinc/composer-installers-extender/issues"
 	},
 	"autoload": {
-		"psr-4": {"OomphInc\\ComposerInstallerExtender\\": "src/"}
+		"psr-4": {"OomphInc\\ComposerInstallersExtender\\": "src/"}
 	},
 	"extra": {
-		"class": "OomphInc\\ComposerInstallerExtender\\Plugin"
+		"class": "OomphInc\\ComposerInstallersExtender\\Plugin"
 	},
 	"require": {
 		"composer-plugin-api": "1.0.0",
