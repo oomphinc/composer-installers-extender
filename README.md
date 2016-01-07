@@ -4,7 +4,7 @@ The `composer-installers-extender` is a plugin for [Composer](https://getcompose
 any package to be installed to a directory other than the default `vendor/` directory within
 the repo on a package-by-package basis. This plugin extends the [`composer/installers`](https://github.com/composer/installers)
 plugin to allow any arbitrary package type to be handled by their custom installer and specified explicitly in the
-`"install-paths"` mapping in the `"extra"` data property.
+`"installer-paths"` mapping in the `"extra"` data property.
 
 `composer/installers` has a finite set of supported package types and we recognize the need for
 any arbitrary package type to be installed to a specific directory other than `vendor/`. This plugin
