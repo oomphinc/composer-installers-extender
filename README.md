@@ -21,14 +21,14 @@ composer require oomphinc/composer-installers-extender
 To support additional package types, add an array of these types in the `"extra"` property in your `composer.json`:
 ```
 	"extra": {
-		"installer-types": [ "library" ]
+		"installer-types": ["library"]
 	}
 ```
 Then, you can add mappings for packages of these types in the same way that you would add package types
 that are supported by [`composer/installers`](https://github.com/composer/installers#custom-install-paths):
 ```
   "extra": {
-    "installer-types": [ "library" ],
+    "installer-types": ["library"],
     "installer-paths": {
       "special/package/": ["my/package"],
       "path/to/libraries/{$name}/": ["type:library"]
@@ -37,3 +37,9 @@ that are supported by [`composer/installers`](https://github.com/composer/instal
 ```
 By default, packages that do not specify a `type` will be considered type `library`. Adding support for this type
 allows any of these packages to be placed in a different install path.
+
+If a type has been added to `"installer-types"`, the plugin will attempt to find an explicit installer path in the mapping.
+If there is no match either by name or by type, the default installer path for all packages will be used instead.
+
+Please see the README for [`composer/installers`](https://github.com/composer/installers) to see the supported
+syntax for package and type matching as well as the supported replacement tokens in the path (e.g. `{$name}`).
