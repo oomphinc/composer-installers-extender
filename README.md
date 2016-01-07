@@ -35,5 +35,5 @@ that are supported by [`composer/installers`](https://github.com/composer/instal
     }
   }
 ```
-By default, packages that do not specifiy a `type` will be considered type `library`. Adding support for this type
+By default, packages that do not specify a `type` will be considered type `library`. Adding support for this type
 allows any of these packages to be placed in a different install path.
