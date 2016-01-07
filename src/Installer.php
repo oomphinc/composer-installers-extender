@@ -1,6 +1,6 @@
 <?php
 
-namespace Oomphinc\ComposerInstallerExtender;
+namespace OomphInc\ComposerInstallerExtender;
 
 use Composer\Installer\LibraryInstaller;
 use Composer\Installers\Installer as ComposerInstaller;
@@ -25,7 +25,7 @@ class Installer extends ComposerInstaller {
 				// get data from the 'extra' field
 				$extra = $this->composer->getPackage()->getExtra();
 				if ( !empty( $extra['installer-types'] ) ) {
-					$this->packageTypes = $extra['installer-types'];
+					$this->packageTypes = (array) $extra['installer-types'];
 				}
 			}
 		}

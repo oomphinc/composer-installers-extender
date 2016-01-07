@@ -3,10 +3,10 @@
 	"type": "composer-plugin",
 	"license": "MIT",
 	"autoload": {
-		"psr-4": {"Oomphinc\\ComposerInstallerExtender\\": ""}
+		"psr-4": {"OomphInc\\ComposerInstallerExtender\\": "src/"}
 	},
 	"extra": {
-		"class": "Oomphinc\\ComposerInstallerExtender\\Plugin"
+		"class": "OomphInc\\ComposerInstallerExtender\\Plugin"
 	},
 	"require": {
 		"composer-plugin-api": "1.0.0",

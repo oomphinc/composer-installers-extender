@@ -1,6 +1,6 @@
 <?php
 
-namespace Oomphinc\ComposerInstallerExtender;
+namespace OomphInc\ComposerInstallerExtender;
 
 use Composer\Installers\BaseInstaller;
 
