@@ -21,7 +21,7 @@
 		"class": "OomphInc\\ComposerInstallersExtender\\Plugin"
 	},
 	"require": {
-		"composer-plugin-api": "1.0.0",
-		"composer/installers": "1.0.22"
+		"composer-plugin-api": "^1.0",
+		"composer/installers": "~1.0.22"
 	}
 }
