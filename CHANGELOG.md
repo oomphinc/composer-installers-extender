@@ -9,20 +9,8 @@ The format is based on [Keep a Changelog][] and this project adheres to the
 
 ## [Unreleased]
 ### Added
-- Add `.editorconfig`, `.gitignore`, `.lando.yml`, `phpcs.xml` and `phpunit.xml`
-  files to support local development
-- Add `LICENSE` and `CHANGELOG.md` files
-- Add `phpunit/phpunit` and `squizlabs/php_codesniffer` as development
-  dependencies
-- Add requirement for PHP 7.1
 
 ### Changed
-- Move `OomphInc\ComposerInstallersExtender\Installer` to
-  `OomphInc\ComposerInstallersExtender\Installers\Installer`
-- Move `OomphInc\ComposerInstallersExtender\InstallerHelper` to
-  `OomphInc\ComposerInstallersExtender\Installers\CustomInstaller`
-- Implement PSR-2 standards and PHP 7.1 syntax
-- Update project `README.md` file
 
 ### Deprecated
 
@@ -31,6 +19,24 @@ The format is based on [Keep a Changelog][] and this project adheres to the
 ### Fixed
 
 ### Security
+
+## [2.0.0] - 2020-08-11
+### Added
+- Add `.editorconfig`, `.gitignore`, `.lando.yml`, `phpcs.xml` and `phpunit.xml`
+  files to support local development
+- Add `LICENSE` and `CHANGELOG.md` files
+- Add `phpunit/phpunit` and `squizlabs/php_codesniffer` as development
+  dependencies
+- Add requirement for PHP 7.1
+- Add support for Composer 2
+
+### Changed
+- Move `OomphInc\ComposerInstallersExtender\Installer` to
+  `OomphInc\ComposerInstallersExtender\Installers\Installer`
+- Move `OomphInc\ComposerInstallersExtender\InstallerHelper` to
+  `OomphInc\ComposerInstallersExtender\Installers\CustomInstaller`
+- Implement PSR-2 standards and PHP 7.1 syntax
+- Update project `README.md` file
 
 ## [1.1.2] - 2017-03-31
 ### Changed
