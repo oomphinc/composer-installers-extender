@@ -9,6 +9,7 @@ The format is based on [Keep a Changelog][] and this project adheres to the
 
 ## [Unreleased]
 ### Added
+- Add `branch-alias` to `composer.json`
 
 ### Changed
 
