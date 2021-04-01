@@ -30,6 +30,14 @@ class PluginTest extends TestCase
                     return null;
                 }
             });
+        $this->composer
+            ->method('getPackage')
+            ->willReturn(new class{
+                public function getExtra()
+                {
+                    return null;
+                }
+            });
 
         $this->io = $this->createMock(IOInterface::class);
     }
