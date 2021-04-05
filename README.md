@@ -1,3 +1,5 @@
+NOTE: This is a temporary fork of the main package to allow testing of the installer name fix from https://github.com/oomphinc/composer-installers-extender/issues/26. This is not a permanent repo and you should follow that issue because some day it will go away.
+
 # Composer Installers Extender
 
 The `composer-installers-extender` is a plugin for [Composer][] that allows
