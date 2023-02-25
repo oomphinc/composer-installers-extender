@@ -23,9 +23,10 @@ class Installer extends InstallerBase
     public function getInstallPath(PackageInterface $package): string
     {
         $installer = new CustomInstaller($package, $this->composer, $this->io);
+        $baseDir = rtrim(rtrim($this->vendorDir ?: '', 'vendor'),'/');
         $path = $installer->getInstallPath($package, $package->getType());
 
-        return $path ?: LibraryInstaller::getInstallPath($package);
+        return $path ? $baseDir . '/' . $path : LibraryInstaller::getInstallPath($package);
     }
 
     /**
