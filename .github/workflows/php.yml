@@ -1,0 +1,38 @@
+name: PHP Composer
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php-versions: ['8.1', '8.0', '7.4']
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install dependencies
+        uses: php-actions/composer@v6
+        with:
+          php_version: ${{ matrix.php-versions }}
+
+      - name: Update Symfony
+        uses: php-actions/composer@v6
+        with:
+          php_version: ${{ matrix.php-versions }}
+
+      - name: PHPUnit (script)
+        run: ./vendor/bin/phpunit
+
+#      - name: PHPUnit (php-actions)
+#        uses: php-actions/phpunit@v3
+#        with:
+#          php_version: ${{ matrix.php-versions }}
+#          # TODO: https://github.com/php-actions/phpunit/issues/51
+#          vendored_phpunit_path: vendor/bin/phpunit
+#          configuration: ./phpunit.xml
