@@ -5,7 +5,6 @@ declare(strict_types = 1);
 namespace OomphInc\ComposerInstallersExtender\Tests;
 
 use Composer\Composer;
-use Composer\Config;
 use Composer\IO\IOInterface;
 use PHPUnit\Framework\TestCase;
 use Composer\Installer\InstallationManager;
@@ -22,16 +21,15 @@ class PluginTest extends TestCase
     {
         parent::setUp();
 
-        $config = $this->getMockBuilder(Config::class)
-            ->setMethods(['get'])
-            ->getMock();
-        $config->method('get')
-            ->willReturn('');
-
         $this->composer = $this->createMock(Composer::class);
         $this->composer
             ->method('getConfig')
-            ->willReturn($config);
+            ->willReturn(new class{
+                public function get($name)
+                {
+                    return null;
+                }
+            });
 
         $this->io = $this->createMock(IOInterface::class);
     }
