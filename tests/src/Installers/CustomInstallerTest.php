@@ -13,6 +13,6 @@ class CustomInstallerTest extends TestCase
     {
         $installer = (new \ReflectionClass(CustomInstaller::class))
             ->newInstanceWithoutConstructor();
-        $this->assertEmpty($installer->getLocations());
+        $this->assertEmpty($installer->getLocations('framework_type'));
     }
 }

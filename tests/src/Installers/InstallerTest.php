@@ -1,16 +1,19 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace OomphInc\ComposerInstallersExtender\Installers;
 
 use Composer\Composer;
+use Composer\Config;
 use Composer\IO\IOInterface;
+use Composer\Package\RootPackageInterface;
 use PHPUnit\Framework\TestCase;
 use Composer\Package\Package;
 
 class InstallerTest extends TestCase
 {
+
     protected $composer;
 
     protected $io;
@@ -19,33 +22,49 @@ class InstallerTest extends TestCase
     {
         parent::setUp();
 
+        $config = $this->getMockBuilder(Config::class)
+            ->onlyMethods(['get'])
+            ->getMock();
+        $config->method('get')
+            ->will($this->returnCallback(
+                function (string $key, int $flags = 0) {
+                    if ($key == 'vendor-dir') {
+                        return 'vendor/';
+                    }
+                    if ($key == 'bin-dir') {
+                        return 'bin/';
+                    }
+                    if ($key == 'bin-compat') {
+                        return 'library';
+                    }
+                    return null;
+                }
+            ));
+
         $this->composer = $this->createMock(Composer::class);
         $this->composer
             ->method('getConfig')
-            ->willReturn(new class {
-                public function get($name) {
-                    return null;
-                }
-            });
+            ->willReturn($config);
 
         $this->io = $this->createMock(IOInterface::class);
     }
 
     public function testGetInstallPath(): void
     {
+        $root_package = $this->getMockBuilder(RootPackageInterface::class)
+            ->onlyMethods(['getExtra'])
+            ->getMockForAbstractClass();
+        $root_package->method('getExtra')
+            ->willReturn([
+                'installer-types' => ['custom-type'],
+                'installer-paths' => [
+                    'custom/path/{$name}' => ['type:custom-type'],
+                ],
+            ]);
+
         $this->composer
             ->method('getPackage')
-            ->willReturn(new class {
-                public function getExtra()
-                {
-                    return [
-                        'installer-types' => ['custom-type'],
-                        'installer-paths' => [
-                            'custom/path/{$name}' => ['type:custom-type'],
-                        ],
-                    ];
-                }
-            });
+            ->willReturn($root_package);
 
         $installer = new Installer($this->io, $this->composer);
 
@@ -61,12 +80,16 @@ class InstallerTest extends TestCase
     public function testSupports(): void
     {
         $installer = new class extends Installer {
-            public function __construct() {}
+
+            public function __construct()
+            {
+            }
 
             public function getInstallerTypes(): array
             {
                 return ['custom-type'];
             }
+
         };
 
         $this->assertTrue($installer->supports('custom-type'));
@@ -76,11 +99,17 @@ class InstallerTest extends TestCase
     /**
      * @dataProvider installerTypesDataProvider
      */
-    public function testGetInstallerTypes($package, array $expected): void
+    public function testGetInstallerTypes($extra, array $expected): void
     {
+        $root_package = $this->getMockBuilder(RootPackageInterface::class)
+            ->onlyMethods(['getExtra'])
+            ->getMockForAbstractClass();
+        $root_package->method('getExtra')
+            ->willReturn($extra);
+
         $this->composer
             ->method('getPackage')
-            ->willReturn($package);
+            ->willReturn($root_package);
 
         $installer = new Installer($this->io, $this->composer);
         $this->assertEquals($expected, $installer->getInstallerTypes());
@@ -90,26 +119,16 @@ class InstallerTest extends TestCase
     {
         return [
             [
-                new class {
-                    public function getExtra(): array
-                    {
-                        return [
-                            'installer-types' => ['custom-type'],
-                            'installer-paths' => [
-                                'custom/path/{$name}' => ['type:custom-type'],
-                            ],
-                        ];
-                    }
-                },
+                [
+                    'installer-types' => ['custom-type'],
+                    'installer-paths' => [
+                        'custom/path/{$name}' => ['type:custom-type'],
+                    ],
+                ],
                 ['custom-type'],
             ],
             [
-                new class {
-                    public function getExtra(): array
-                    {
-                        return [];
-                    }
-                },
+                [],
                 [],
             ],
         ];
