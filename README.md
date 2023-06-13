@@ -37,6 +37,7 @@ automatically required as well if not already required.
 To support additional package types, add an array of these types in the
 `extra` property in your `composer.json`:
 
+with [`composer/installers`][] < v1.0.13:
 ```json
 {
     "extra": {
@@ -44,10 +45,17 @@ To support additional package types, add an array of these types in the
     }
 }
 ```
+with [`composer/installers`][] >= v1.0.13:
+```json
+{
+    "extra": {
+        "installer-types": ["drupal-library"]
+    }
+}
+```
+Then refer to that type when adding to `installer-paths`:
 
-Then, you can add mappings for packages of these types in the same way that you
-would add package types that are supported by [`composer/installers`][]:
-
+with [`composer/installers`][] < v1.0.13:
 ```json
 {
     "extra": {
@@ -55,6 +63,18 @@ would add package types that are supported by [`composer/installers`][]:
         "installer-paths": {
             "special/package/": ["my/package"],
             "path/to/libraries/{$name}/": ["type:library"]
+        }
+    }
+}
+```
+with [`composer/installers`][] >= v1.0.13:
+```json
+{
+    "extra": {
+        "installer-types": ["drupal-library"],
+        "installer-paths": {
+            "special/package/": ["my/package"],
+            "path/to/libraries/{$name}/": ["type:drupal-library"]
         }
     }
 }
@@ -68,9 +88,9 @@ If a type has been added to `installer-types`, the plugin will attempt to find
 an explicit installer path in the mapping. If there is no match either by name
 or by type, the default installer path for all packages will be used instead.
 
-Please see the README for [`composer/installers`][] to see the supported syntax
+**Please see the README for [`composer/installers`][] to see the supported syntax
 for package and type matching as well as the supported replacement tokens in
-the path (e.g. `{$name}`).
+the path (e.g. `{$name}`).**
 
 ## License
 
